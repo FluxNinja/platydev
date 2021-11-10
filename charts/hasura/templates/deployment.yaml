@@ -101,18 +101,19 @@ spec:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-postgresql"
                   key: metadataUrl
-            - name: HASURA_GRAPHQL_ADMIN_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ $fullname }}"
-                  key: adminSecret
-            - name: HASURA_GRAPHQL_JWT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ $fullname }}"
-                  key: jwt.secret
-            - name: HASURA_GRAPHQL_UNAUTHORIZED_ROLE
-              value: "{{ .Values.unauthorizedRole }}"
+            # TODO: Uncomment after FLUX-572
+            #- name: HASURA_GRAPHQL_ADMIN_SECRET
+            #  valueFrom:
+            #    secretKeyRef:
+            #      name: "{{ $fullname }}"
+            #      key: adminSecret
+            #- name: HASURA_GRAPHQL_JWT_SECRET
+            #  valueFrom:
+            #    secretKeyRef:
+            #      name: "{{ $fullname }}"
+            #      key: jwt.secret
+            #- name: HASURA_GRAPHQL_UNAUTHORIZED_ROLE
+            #  value: "{{ .Values.unauthorizedRole }}"
             - name: HASURA_GRAPHQL_CORS_DOMAIN
               value: "{{- join "," .Values.cors.domain }}"
             - name: HASURA_GRAPHQL_DISABLE_CORS
